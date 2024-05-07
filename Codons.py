@@ -6,18 +6,18 @@ start_codon = "ATG"
 stop_codon = ("TAG", "TAA", "TGA")
 
 def isPotentialGene(DNA: str):
-    # длина кратна 3
+
     if (len(DNA) % 3) != 0:
         return False
-    # начинается с кодона начала
+
     if not DNA.startswith(start_codon):
         return False
-    # не имеет кодонов конца внутри
+
     for i in range(len(DNA) - 3):
         if i % 3 == 0:
             if DNA[i:i+3] in stop_codon:
                 return False
-    # завершается кодоном конца
+
     if DNA.endswith(stop_codon[0]):
         return True
     if DNA.endswith(stop_codon[1]):
