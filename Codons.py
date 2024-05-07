@@ -5,8 +5,8 @@ nucleobase = "AGCT"
 start_codon = "ATG"
 stop_codon = ("TAG", "TAA", "TGA")
 
-def isPotentialGene(DNA: str):
 
+def isPotentialGene(DNA: str):
     if (len(DNA) % 3) != 0:
         return False
 
@@ -38,26 +38,32 @@ def generateCodon(triplets: int):
             triplets -= 1
     return codons
 
+
 def generateDNA(length: int):
     if length <= 6 or length % 3 != 0:
         raise ValueError("the length of the DNA must be greater than six and a multiple of six")
     return start_codon + generateCodon(int((length - 6) / 3)) + choice(stop_codon)
 
+
 # 1
 def isValidDNA(st: str):
     return set(st).issubset(nucleobase)
+
 
 # 2
 def complementWC(DNA: str):
     return ''.join([{'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}[base] for base in DNA])
 
+
 # 3
 def palindromeWC(DNA: str):
     return DNA == complementWC(DNA)[::-1]
 
+
 # 4
 def isShift(s: str, t: str):
     return len(s) == len(t) and t in s + s
+
 
 # 5
 def find_PotentialGene(DNA: str, length: int):
@@ -73,6 +79,7 @@ def find_PotentialGene(DNA: str, length: int):
     if not potential_genes:
         return None
     return potential_genes
+
 
 # 6
 def caesar_cipher(text: str, ROT: int, decipher=False):
